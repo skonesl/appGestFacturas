@@ -22,32 +22,35 @@ public class Main {
         Factura factura = new Factura(descripcion, cliente);
 
         Producto producto;
-        String nombre;
-        float precio;
-        int cantidad;
+
+        // Para optimizar el código: En lugar de crear variables para pasárselas al objeto, se pasa
+        // directamente el Scanner al set del objeto.
+
+//        String nombre;
+//        float precio;
+//        int cantidad;
 
         System.out.println();
 
         for (int i = 0; i < 5; i++) {
             producto = new Producto();
             System.out.print("Ingrese producto nº " + producto.getCodigo() + ": ");
-            nombre = entrada.next();
-            producto.setNombre(nombre);
+//            nombre = entrada.next();
+            producto.setNombre(entrada.nextLine());
 
             System.out.print("Ingrese el precio: ");
-            precio = entrada.nextFloat();
-            producto.setPrecio(precio);
+//            precio = entrada.nextFloat();
+            producto.setPrecio(entrada.nextFloat());
 
             System.out.print("Ingrese la cantidad: ");
-            cantidad = entrada.nextInt();
 
-            ItemFactura item = new ItemFactura(cantidad, producto);
-            factura.addItemFactura(item);
+            factura.addItemFactura(new ItemFactura(entrada.nextInt(), producto));
 
             System.out.println();
+            entrada.nextLine();
         }
 
-        System.out.println(factura.generarDetalle());
+        System.out.println(factura);
 
     }
 
